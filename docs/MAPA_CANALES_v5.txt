@@ -1,0 +1,91 @@
+================================================================================
+MAPA DE CANALES DMR - Codeplug v5
+================================================================================
+
+Todos los canales digitales tienen CC=1 fijo.
+
+Canal  Posicion    Frecuencia     TS   TG    Proposito
+--------------------------------------------------------------------------------
+DMR-1    33       446.00625     1    9    Llamadas locales generales
+DMR-2    34       446.00625     2    9    Llamadas locales generales (alt)
+DMR-3    35       446.01875     1    1    Grupo privado 1
+DMR-4    36       446.01875     2    1    Grupo privado 1 (alt)
+DMR-5    37       446.03125     1    2    Grupo privado 2
+DMR-6    38       446.03125     2    2    Grupo privado 2 (alt)
+DMR-7    39       446.04375     1    3    Grupo privado 3
+DMR-8    40       446.04375     2    3    Grupo privado 3 (alt)
+DMR-9    41       446.05625     1    4    Grupo privado 4
+DMR-10   42       446.05625     2    4    Grupo privado 4 (alt)
+DMR-11   43       446.06875     1    5    Grupo privado 5
+DMR-12   44       446.06875     2    5    Grupo privado 5 (alt)
+DMR-13   45       446.08125     1    6    Grupo privado 6
+DMR-14   46       446.08125     2    6    Grupo privado 6 (alt)
+DMR-15   47       446.09375     1    7    Grupo privado 7
+DMR-16   48       446.09375     2    7    Grupo privado 7 (alt)
+DMR-17   49       446.10625     1    8    Grupo privado 8
+DMR-18   50       446.10625     2    8    Grupo privado 8 (alt)
+DMR-19   51       446.11875     1    16   Llamadas directas (private)
+DMR-20   52       446.11875     2    16   Llamadas directas (alt)
+DMR-21   53       446.13125     1    9990 Test: te oyes a ti mismo (parrot/echo)
+DMR-22   54       446.13125     2    9990 Test: te oyes a ti mismo (alt)
+DMR-23   55       446.14375     1    9999 Private call test
+DMR-24   56       446.14375     2    9999 Private call test (alt)
+DMR-25   57       446.15625     1    91   Mundial (ingles)
+DMR-26   58       446.15625     2    91   Mundial (ingles, alt)
+DMR-27   59       446.16875     1    92   Europa continental
+DMR-28   60       446.16875     2    92   Europa continental (alt)
+DMR-29   61       446.18125     1    214  Espana (requiere indicativo EA)
+DMR-30   62       446.18125     2    214  Espana (indicativo EA, alt)
+DMR-31   63       446.19375     1    10   Grupo privado 10
+DMR-32   64       446.19375     2    11   Grupo privado 11
+
+================================================================================
+NOTAS
+================================================================================
+
+- TS = Time Slot (1 o 2). Misma frecuencia, distinto timeslot = independiente.
+- (alt) = alternativa: misma TG en otra freq/TS, util si hay colision.
+- CC=1 en todos, no se cambia (convention).
+- Para TESTEAR el radio digitalmente, usa DMR-21 o DMR-22 (TG 9990 Echo):
+  pulsas PTT y al soltar deberias oirte a ti mismo tras 1 segundo.
+
+================================================================================
+MAPA DE CANALES ANALOGICOS (PMR-1 a PMR-32)
+================================================================================
+
+Canal  Frecuencia     CTCSS       Notas
+--------------------------------------------------------------------------------
+PMR-1  446.00625      OFF         oyes todo
+PMR-2  446.01875      OFF         oyes todo
+PMR-3  446.03125      OFF         oyes todo
+PMR-4  446.04375      OFF         oyes todo
+PMR-5  446.05625      OFF         oyes todo
+PMR-6  446.06875      OFF         oyes todo
+PMR-7  446.08125      85.4 Hz     7-7 EMERGENCIA MONTAÑA
+PMR-8  446.09375      OFF         oyes todo
+PMR-9  446.10625      67.0 Hz     grupo cerrado
+PMR-10 446.11875      77.0 Hz     grupo cerrado
+PMR-11 446.13125      88.5 Hz     grupo cerrado
+PMR-12 446.14375      100.0 Hz    grupo cerrado
+PMR-13 446.15625      107.2 Hz    grupo cerrado
+PMR-14 446.16875      114.8 Hz    grupo cerrado
+PMR-15 446.18125      127.3 Hz    grupo cerrado
+PMR-16 446.19375      136.5 Hz    grupo cerrado
+PMR-17 446.00625      146.2 Hz    sub-grupo B (mismo freq PMR-1)
+PMR-18 446.01875      156.7 Hz    sub-grupo B (mismo freq PMR-2)
+PMR-19 446.03125      167.9 Hz    sub-grupo B
+PMR-20 446.04375      179.9 Hz    sub-grupo B
+PMR-21 446.05625      192.8 Hz    sub-grupo B
+PMR-22 446.06875      203.5 Hz    sub-grupo B
+PMR-23 446.08125      218.1 Hz    sub-grupo B
+PMR-24 446.09375      233.6 Hz    sub-grupo B
+PMR-25 446.10625      241.8 Hz    sub-grupo C (mismo freq PMR-9)
+PMR-26 446.11875      250.3 Hz    sub-grupo C
+PMR-27 446.13125      71.9 Hz     sub-grupo C
+PMR-28 446.14375      79.7 Hz     sub-grupo C
+PMR-29 446.15625      82.5 Hz     sub-grupo C
+PMR-30 446.16875      91.5 Hz     sub-grupo C
+PMR-31 446.18125      94.8 Hz     sub-grupo C
+PMR-32 446.19375      97.4 Hz     sub-grupo C
+
+================================================================================

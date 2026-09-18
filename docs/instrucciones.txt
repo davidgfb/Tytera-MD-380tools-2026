@@ -1,0 +1,119 @@
+TYT MD-UV380 - Codeplug PMR446
+================================
+
+LIMITACION IMPORTANTE
+---------------------
+Este codeplug NO se ha podido flashear al radio. El CPS de TYT es
+una aplicacion Windows de escritorio con driver USB propietario
+(libusb-win32 / ZT-USB). opencode (este CLI) no puede acceder al
+USB ni lanzar el CPS. Tienes que importarlo manualmente.
+
+ARCHIVOS
+--------
+- tyt_md-uv380_pmr446.csv  -> 16 canales PMR446 listos
+
+PASOS EN EL PC
+--------------
+1. Instala el driver USB del MD-UV380 (ZT-USB / TYT-driver).
+2. Abre el CPS oficial de TYT (descarga desde tytsz.com o el PDF
+   que venia con el radio).
+3. Conecta el radio por USB, enciende el radio en modo CPS
+   (Menu -> Program / algunos modelos encienden directo al
+   detectar USB).
+4. En el CPS: Tools / Import -> CSV -> selecciona el archivo.
+5. Verifica mapeo de columnas si tu version del CPS usa otro
+   orden (CTCSS a veces se separa en RX/TX y tipo analogico/digital).
+6. Click en Write to Radio.
+
+EQUIVALENCIA DE TONOS CON RETEVIS UV5R
+--------------------------------------
+- TYT MD-UV380 y Retevis UV5R comparten el mismo estandar de
+  CTCSS (38 tonos) y DCS (104 codigos N + 104 I). 100% compatibles.
+- En el UV5R: Menu -> T-SQL -> el mismo codigo que pongas aqui.
+  DCS en UV5R va como "D023N" o "D023" indistintamente.
+
+CONFIGURACION SUGERIDA EN EL CPS (Display)
+------------------------------------------
+Para que se vea freq + canal + tono a la vez:
+- General Settings -> Display Mode -> "Channel Number + Name"
+- Para ver el tono: pulsar boton "F" o el programmable key
+  (consulta el manual segun firmware). El CPS no siempre permite
+  los 3 campos a la vez en pantalla; en muchos FW solo se ven
+  2: canal y frecuencia. El tono sale en sub-menu del canal.
+
+CANAL 7 - EMERGENCIA MONTAÑA (7-7)
+----------------------------------
+- Frecuencia: 446.08125 MHz
+- Tono: CTCSS 85.4 Hz (subtono #7 de la tabla estandar)
+- Es la convencion usada por federaciones de montaña en España.
+- Marcado como FAV (favorito) para acceso rapido con la tecla
+  "Scan" o el knob en posicion FAV si tu FW lo soporta.
+- Si quieres maxima visibilidad en emergencia, pon el tono OFF
+  (carrier squelch) en RX - pero entonces tambien oiras a
+  cualquiera en 446.08125. Recomendado: dejar el tono 7 y que
+  quien busque te encuentre en "7-7".
+
+DMR - POR QUE NO ESTA EN EL CODEPLUG
+------------------------------------
+- PMR446 es 100% ANALOGICO por regulacion europea (CEPT/ECC).
+- DMR (digital) NO se puede emitir legalmente en PMR446.
+- Si tienes licencia de radioaficionado (EA), puedes usar DMR
+  en bandas amateur:
+    * 430-440 MHz en España (UHF, segmentacion IARU R2)
+    * 144-146 MHz en VHF
+- Para DMR en amateur necesitaras:
+    * Color Code (1-15)
+    * Time Slot (1 o 2)
+    * Talk Group (ej: TG9 local, TG214 España, TG91 mundial)
+    * Contact list con cada TG
+  El CPS del MD-UV380 admite estos campos. Si quieres que te
+  genere un codeplug DMR amateur, dimelo y lo añado.
+
+POTENCIA Y LEGALIDAD
+--------------------
+- PMR446 legal: max 0.5W ERP, antena no extraible/reemplazable.
+- Tu MD-UV380 puede dar 1W (Low) y 5W (High). El "Low" ya
+  excede el limite legal en banda PMR.
+- He puesto todos los canales en "Low" para minimizar el
+  exceso. Aun asi, legalmente deberias usar solo 0.5W. Si
+  quieres cumplimiento estricto: anota que cualquier TX aqui
+  esta ligeramente por encima del limite legal.
+- Para uso real con el Retevis UV5R (0.5W real), la comunicacion
+  funcionara - el receptor oirá igual aunque tu TX sea 1W.
+
+FIRMWARE
+--------
+- A fecha actual no hay una version "ultima" publica clara de
+  TYT para el MD-UV380 (las ultimas publicadas en tytsz.com
+  son de 2023-2024, basicamente V3.x). TYT no suele actualizar.
+- Existe firmware open-source "OpenMDUV380" en GitHub (proyecto
+  de la comunidad ham, mantenido por PU2OSP y colaboradores):
+    https://github.com/PU2OSP/OpenMDUV380
+  Añade funciones (GPS, mejor DMR, mas canales, mejor display).
+- Para saber tu version: enciende el radio, Menu -> Utilities ->
+  Version (o Info). Te dira algo como "DMR-V3.x" o similar.
+- Si me pegas el numero exacto de version que te sale, te digo
+  si conviene actualizar.
+
+GRUPOS DMR "FACIL" DENTRO DE LA MISMA FRECUENCIA
+------------------------------------------------
+Tu idea de cambiar TG rapidamente es posible con:
+1. Programar varios canales analogos (mismo freq) con diferente
+   TG en DMR. Ej: CH9-ANA, CH9-DMR-TG9, CH9-DMR-TG214. Pero
+   satura el knob de 16 posiciones.
+2. En digital, usar el menu del radio: "Talkgroup" o "Manual
+   Dial" - algunos FW permiten introducir TG numerico sobre
+   la marcha. Revisa "Menu -> Utilities -> TG Select" o el
+   atajo de la tecla * / #.
+3. Activar el modo "Promiscuous" o "TG Hold" si tu FW lo tiene:
+   oir todos los TG de un timeslot y responder al ultimo que
+   hablo. Esto es lo mas comodo en uso real.
+
+NOTA SOBRE SUBTONOS EN PANTALLA
+-------------------------------
+La mayoria de FW del MD-UV380 NO muestran tono en la pantalla
+principal (solo canal + freq). Para verlo tienes que:
+- Entrar en Menu -> Channel Info / Edit -> veras RX Tone / TX Tone
+- O asignar el tono visible a uno de los programmable keys.
+Si tu FW lo permite, se configura en CPS -> Display -> "Show
+CTCSS/DCS on main screen". Marcalo si la opcion existe.
